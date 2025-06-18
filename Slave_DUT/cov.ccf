@@ -1,0 +1,2 @@
+set_implicit_block_scoring -off
+set_explicit_block_scoring -off

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<refinement-file-root>
+  <information comment-version="2" creation-time="Tue 10 Jun 2025 18:06:00 IST" creator="asrivastava" csCheck="true" save-ref-method="seq" tool-version="Cadence Verisium Manager24.09" rules-signature-c="6dcf4394093a8ec812f72f8d642df4">
+    <ucm-files>
+      <ucm-file domain="icc" modelCheckSum="1923042241" path="/projects/G030/users/asrivastava/axilite_slave/cov_work/scope/icc_729f4bc1_4111934c.ucm"></ucm-file>
+    </ucm-files>
+    <ccf-files>
+      <ccf-file content="set_implicit_block_scoring -off;set_explicit_block_scoring -off;" path="/projects/G030/users/asrivastava/axilite_slave/cov.ccf"></ccf-file>
+    </ccf-files>
+  </information>
+  <rules>
+    <rule ccType="inst" ccfFlagsMask="16384-42" domain="icc" entityName="axilite_s_tb_top/dut/52" entityType="block" excTime="1749551349" file="0" im-checksum="1362471090" line="322" name="exclude" reviewer="2" text="begin" user="1" vscope="default"></rule>
+    <rule ccType="inst" ccfFlagsMask="16384-42" domain="icc" entityName="axilite_s_tb_top/dut/55" entityType="block" excTime="1749551352" file="0" im-checksum="1362471090" line="333" name="exclude" reviewer="2" text="begin" user="1" vscope="default"></rule>
+    <rule ccType="inst" ccfFlagsMask="16384-42" domain="icc" entityName="axilite_s_tb_top/dut/63" entityType="block" excTime="1749551354" file="0" im-checksum="1362471090" line="370" name="exclude" reviewer="2" text="state &lt;=  gen_data;" user="1" vscope="default"></rule>
+    <rule ccType="inst" ccfFlagsMask="16384-42" domain="icc" entityName="axilite_s_tb_top/dut/66" entityType="block" excTime="1749551356" file="0" im-checksum="1362471090" line="382" name="exclude" reviewer="2" text="begin" user="1" vscope="default"></rule>
+  </rules>
+  <cache-map>
+    <cache-entry key="0" value="/projects/G030/users/asrivastava/axilite_slave/axilite_s.sv"></cache-entry>
+    <cache-entry key="1" value="asrivastava"></cache-entry>
+    <cache-entry key="2" value="unknown"></cache-entry>
+  </cache-map>
+</refinement-file-root>

@@ -1,0 +1,3 @@
++incdir+/projects/G030/users/asrivastava/axilite_slave
+axilite_s.sv
+axilite_s_tb_top.sv
