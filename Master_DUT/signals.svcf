@@ -1,0 +1,158 @@
+# SimVision Command Script (Wed Jun 11 10:34:27 PM IST 2025)
+#
+# Version 24.10.a071
+#
+# You can restore this configuration with:
+#
+#     simvision -input signals.svcf
+#  or simvision -input signals.svcf database1 database2 ...
+#
+
+
+#
+# Preferences
+#
+preferences set expand-userbits {128 4 256 512 16}
+preferences set user-toolbar-list {SrcBrowser {} SchematicWindow {} WaveWindow {} WatchList {}}
+preferences set waveform-height 13
+preferences set vhdl-colors {X #ff0000 0 {} L #00ffff H #00ffff U #9900ff 1 {} - {} Z #ff9900 W #ff0000}
+
+#
+# PPE data
+#
+array set dbNames ""
+set dbNames(realName1) [database require waves  -hints {
+	file ./waves.shm/waves.trn
+	file /projects/G030/users/asrivastava/axilite_master/waves.shm/waves.trn
+}]
+
+#
+# Conditions
+#
+set expression {((((axilite_m_tb_top.dut.m_axi_arvalid === 'b1) && (axilite_m_tb_top.dut.m_axi_arready === 'b1)) && (axilite_m_tb_top.dut.m_axi_araddr === 'h00000056)) && (axilite_m_tb_top.mem_axi_aclk === 'b1))}
+if {[catch {condition new -name  rd -expr $expression}] != ""} {
+    condition set -using rd -expr $expression
+}
+set expression {((((axilite_m_tb_top.mem_axi_aclk === 'b1) && (axilite_m_tb_top.dut.m_axi_awvalid === 'b1)) && (axilite_m_tb_top.dut.m_axi_awready === 'b1)) && (axilite_m_tb_top.dut.m_axi_awaddr === 'h00000056))}
+if {[catch {condition new -name  wr -expr $expression}] != ""} {
+    condition set -using wr -expr $expression
+}
+
+#
+# Markers
+#
+set time 27605000ps
+if {[catch {marker new -name  wr_strb_f_data_66 -time $time}] != ""} {
+    marker set -using wr_strb_f_data_66 -time $time -locked 1 
+}
+set time 33145000ps
+if {[catch {marker new -name  rd_data -time $time}] != ""} {
+    marker set -using rd_data -time $time -locked 1 
+}
+
+#
+# Mnemonic Maps
+#
+mmap new  -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new  -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+#
+# Design Browser windows
+#
+if {[catch {window new WatchList -name "Design Browser 1" -geometry 730x500+261+33}] != ""} {
+    window geometry "Design Browser 1" 730x500+261+33
+}
+window target "Design Browser 1" on
+browser using {Design Browser 1}
+browser set \
+    -signalsort name
+browser timecontrol set -lock 0
+
+#
+# Waveform windows
+#
+if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1920x964+-5+-5}] != ""} {
+    window geometry "Waveform 1" 1920x964+-5+-5
+}
+window target "Waveform 1" on
+waveform using {Waveform 1}
+waveform sidebar select designbrowser
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 219 \
+    -units ps \
+    -valuewidth 151
+waveform baseline set -time 0
+
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.mem_axi_aclk}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {wr}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_awvalid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_awready}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_awaddr[31:0]}]}
+	} ]]
+waveform format $id -radix %x
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_wvalid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_wready}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_wstrb[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_wdata[31:0]}]}
+	} ]]
+waveform format $id -radix %x
+set id [waveform add -signals [subst  {
+	{[format {rd}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_arvalid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_arready}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_araddr[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_rvalid}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_rready}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{$dbNames(realName1)::[format {axilite_m_tb_top.dut.m_axi_rdata[31:0]}]}
+	} ]]
+
+waveform xview limits 21404229ps 21711185ps
+
+#
+# Waveform Window Links
+#
+
+#
+# Console windows
+#
+console set -windowname Console
+window geometry Console 1920x964+-5+-5
+
+#
+# Layout selection
+#
+
